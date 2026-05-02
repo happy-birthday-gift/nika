@@ -1,0 +1,2071 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+<title>Happy Birthday, Ніка 🎂</title>
+
+<!-- Swiper CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+<!-- Google Fonts: Montserrat with Cyrillic -->
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,700&display=swap" rel="stylesheet" />
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com"></script>
+
+<style>
+/* =====================================================
+   ROOT VARIABLES & RESET
+===================================================== */
+:root {
+  --neon-red:    #ff2d55;
+  --neon-cyan:   #00d4ff;
+  --neon-purple: #bf5af2;
+  --neon-gold:   #ffd60a;
+  --neon-green:  #34c759;
+
+  /* Steam palette */
+  --steam-bg:       #1b2838;
+  --steam-bg2:      #171a21;
+  --steam-panel:    #2a475e;
+  --steam-blue:     #1a9fff;
+  --steam-blue2:    #66c0f4;
+  --steam-text:     #acbdd9;
+  --steam-positive: #a3cf6f;
+  --steam-discount: #4c6b22;
+  --steam-discount-txt: #beee11;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  font-family: 'Montserrat', sans-serif;
+  background: #000;
+}
+
+.swiper { width: 100%; height: 100vh; }
+.swiper-slide {
+  width: 100%;
+  height: 100vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* =====================================================
+   PROGRESS INDICATOR
+===================================================== */
+.progress-indicator {
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  z-index: 9999;
+  background: rgba(0,0,0,0.55);
+  border: 1px solid rgba(255,255,255,0.18);
+  border-radius: 20px;
+  padding: 4px 12px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  color: rgba(255,255,255,0.7);
+  backdrop-filter: blur(8px);
+  pointer-events: none;
+}
+
+/* =====================================================
+   SHARED BUTTON STYLES
+===================================================== */
+.btn-neon {
+  display: inline-block;
+  padding: 14px 32px;
+  border-radius: 4px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+  font-size: 14px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  cursor: pointer;
+  border: none;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.2s ease;
+  text-decoration: none;
+}
+
+.btn-red {
+  background: linear-gradient(135deg, #ff2d55, #c0392b);
+  color: #fff;
+  box-shadow: 0 0 20px rgba(255,45,85,0.5);
+}
+.btn-red:hover { box-shadow: 0 0 35px rgba(255,45,85,0.9); transform: translateY(-2px); }
+.btn-red:active { transform: translateY(0); }
+
+.btn-cyan {
+  background: linear-gradient(135deg, #00d4ff, #0095b3);
+  color: #000;
+  box-shadow: 0 0 20px rgba(0,212,255,0.5);
+}
+.btn-cyan:hover { box-shadow: 0 0 35px rgba(0,212,255,0.9); transform: translateY(-2px); }
+
+.btn-gold {
+  background: linear-gradient(135deg, #ffd60a, #d4a50d);
+  color: #000;
+  box-shadow: 0 0 20px rgba(255,214,10,0.5);
+}
+.btn-gold:hover { box-shadow: 0 0 35px rgba(255,214,10,0.9); transform: translateY(-2px); }
+
+.btn-steam {
+  background: linear-gradient(180deg, #4d9bcf 0%, #3a7aad 100%);
+  color: #fff;
+  font-size: 12px;
+  letter-spacing: 1px;
+  border-radius: 2px;
+  padding: 10px 24px;
+  box-shadow: 0 1px 0 rgba(0,0,0,0.4);
+}
+.btn-steam:hover { background: linear-gradient(180deg, #5eb0e6 0%, #4a8cc4 100%); }
+
+/* =====================================================
+   GLITCH KEYFRAMES
+===================================================== */
+@keyframes glitch {
+  0%   { clip-path: inset(40% 0 61% 0); transform: translate(-4px,0); }
+  20%  { clip-path: inset(92% 0 1% 0);  transform: translate(4px,0); }
+  40%  { clip-path: inset(43% 0 1% 0);  transform: translate(-2px,0); }
+  60%  { clip-path: inset(25% 0 58% 0); transform: translate(2px,0); }
+  80%  { clip-path: inset(54% 0 7% 0);  transform: translate(-3px,0); }
+  100% { clip-path: inset(58% 0 43% 0); transform: translate(3px,0); }
+}
+@keyframes glitchBase {
+  0%,100% { text-shadow: -2px 0 #ff2d55, 2px 0 #00d4ff; }
+  50%      { text-shadow: 2px 0 #ff2d55, -2px 0 #00d4ff; }
+}
+@keyframes scanlines {
+  0%   { background-position: 0 0; }
+  100% { background-position: 0 100px; }
+}
+@keyframes flicker {
+  0%,100% { opacity:1; } 92% { opacity:1; } 93% { opacity:0.4; } 95% { opacity:1; } 97% { opacity:0.3; } 99% { opacity:1; }
+}
+@keyframes fadeInUp {
+  from { opacity:0; transform:translateY(18px); }
+  to   { opacity:1; transform:translateY(0); }
+}
+@keyframes fadeIn {
+  from { opacity:0; } to { opacity:1; }
+}
+@keyframes popIn {
+  0%   { opacity:0; transform:scale(0.5); }
+  70%  { transform:scale(1.1); }
+  100% { opacity:1; transform:scale(1); }
+}
+@keyframes levelUp {
+  0%   { opacity:0; transform:scale(0.3) rotate(-5deg); }
+  60%  { transform:scale(1.15) rotate(1deg); }
+  100% { opacity:1; transform:scale(1) rotate(0deg); }
+}
+@keyframes confettiFall {
+  0%   { transform:translateY(-10px) rotate(0deg); opacity:1; }
+  100% { transform:translateY(100vh) rotate(720deg); opacity:0; }
+}
+@keyframes pulse-glow {
+  0%,100% { box-shadow: 0 0 10px var(--neon-gold), 0 0 20px var(--neon-gold); }
+  50%      { box-shadow: 0 0 25px var(--neon-gold), 0 0 50px var(--neon-gold); }
+}
+@keyframes terminalBlink {
+  0%,100% { opacity:1; } 50% { opacity:0; }
+}
+@keyframes milesDrop {
+  0%   { transform:translateY(-120%) rotate(-8deg); opacity:0; }
+  70%  { transform:translateY(5%) rotate(2deg); opacity:1; }
+  100% { transform:translateY(0) rotate(0deg); opacity:1; }
+}
+@keyframes bubblePop {
+  0%   { opacity:0; transform:scale(0.4) rotate(var(--rot,0deg)); }
+  70%  { transform:scale(1.1) rotate(var(--rot,0deg)); }
+  100% { opacity:1; transform:scale(1) rotate(var(--rot,0deg)); }
+}
+@keyframes wishGlitch {
+  0%   { text-shadow:none; }
+  20%  { text-shadow: -2px 0 #ff2d55, 2px 0 #00d4ff; }
+  40%  { text-shadow: 2px 0 #bf5af2, -2px 0 #ff2d55; }
+  100% { text-shadow: none; }
+}
+@keyframes shimmer {
+  0%   { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+@keyframes sprinkleFloat {
+  0%,100% { transform: translateY(0) rotate(0deg); }
+  50%      { transform: translateY(-4px) rotate(180deg); }
+}
+@keyframes float {
+  0%,100% { transform:translateY(0); }
+  50%      { transform:translateY(-8px); }
+}
+@keyframes comicPanelIn {
+  from { opacity:0; transform:translateX(-30px) skewX(-3deg); }
+  to   { opacity:1; transform:translateX(0) skewX(0deg); }
+}
+@keyframes badgePop {
+  0%   { opacity:0; transform:scale(0) rotate(-10deg); }
+  70%  { transform:scale(1.2) rotate(3deg); }
+  100% { opacity:1; transform:scale(1) rotate(0deg); }
+}
+
+
+/* =====================================================
+   SLIDE 1 — GLITCH INTRO
+===================================================== */
+#slide1 {
+  background: #050505;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  position: relative;
+  overflow: hidden;
+}
+#slide1::before {
+  content:'';
+  position:absolute; inset:0;
+  background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,212,255,0.03) 2px, rgba(0,212,255,0.03) 4px);
+  pointer-events:none;
+  animation: scanlines 8s linear infinite;
+}
+#slide1::after {
+  content:'';
+  position:absolute; inset:0;
+  background: radial-gradient(ellipse at 50% 50%, rgba(191,90,242,0.08) 0%, transparent 70%);
+  pointer-events:none;
+}
+.s1-particles { position:absolute; inset:0; pointer-events:none; overflow:hidden; }
+.s1-particle {
+  position:absolute;
+  width:2px; height:2px;
+  background:#00d4ff;
+  border-radius:50%;
+  animation: confettiFall linear infinite;
+}
+.s1-glitch-block {
+  position:absolute;
+  height:2px;
+  background:rgba(255,45,85,0.6);
+  animation: glitch 0.3s infinite;
+}
+
+.s1-init {
+  font-size:10px;
+  letter-spacing:3px;
+  color:rgba(0,212,255,0.5);
+  text-transform:uppercase;
+  margin-bottom:48px;
+  font-weight:500;
+}
+.s1-init span { animation: terminalBlink 1s infinite; }
+
+.s1-heading {
+  font-size: clamp(42px, 10vw, 72px);
+  font-weight:900;
+  color:#fff;
+  text-align:center;
+  line-height:1.1;
+  position:relative;
+  animation: glitchBase 3s infinite, flicker 8s infinite;
+  opacity:0;
+}
+.s1-heading::before, .s1-heading::after {
+  content: attr(data-text);
+  position:absolute; left:0; top:0; width:100%;
+  color:#fff;
+}
+.s1-heading::before { color:#ff2d55; animation:glitch 0.4s infinite; }
+.s1-heading::after  { color:#00d4ff; animation:glitch 0.4s infinite reverse; }
+
+.s1-sub {
+  font-size:clamp(13px, 3.5vw, 17px);
+  color:rgba(255,255,255,0.65);
+  text-align:center;
+  margin-top:16px;
+  letter-spacing:0.5px;
+  font-weight:400;
+  opacity:0;
+}
+.s1-sub2 {
+  font-size:clamp(12px, 3vw, 15px);
+  color:rgba(0,212,255,0.8);
+  text-align:center;
+  margin-top:10px;
+  font-style:italic;
+  font-weight:300;
+  opacity:0;
+}
+.s1-exe {
+  font-size:10px;
+  color:rgba(191,90,242,0.5);
+  letter-spacing:2px;
+  margin-top:40px;
+  opacity:0;
+}
+.s1-btn { margin-top:8px; opacity:0; }
+
+.s1-show { animation: fadeInUp 0.7s ease forwards; }
+
+/* =====================================================
+   SLIDE 2 — CAKES
+===================================================== */
+#slide2 {
+  background: linear-gradient(160deg, #fdf6ec 0%, #fbeede 60%, #f8e4d4 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 24px 16px 32px;
+  position: relative;
+  overflow: hidden;
+}
+#slide2::before {
+  content:'';
+  position:absolute; inset:0;
+  background: radial-gradient(ellipse at 50% 0%, rgba(255,160,180,0.18) 0%, transparent 55%);
+  pointer-events:none;
+}
+#slide2::after {
+  content:'';
+  position:absolute;
+  top:0; left:0; right:0;
+  height:3px;
+  background: linear-gradient(90deg, #e85d75, #c97abe, #f5a623);
+  pointer-events:none;
+}
+
+.s2-title {
+  font-size:13px;
+  letter-spacing:4px;
+  font-weight:700;
+  color:#c06060;
+  text-transform:uppercase;
+  margin-bottom:20px;
+  margin-top:8px;
+}
+
+/* CAKES AREA */
+.cakes-row {
+  display:flex;
+  flex-direction:row;
+  gap:20px;
+  justify-content:center;
+  align-items:flex-end;
+  width:100%;
+  max-width:400px;
+  margin-bottom:24px;
+}
+
+.cake-box {
+  width: 155px;
+  background:#2a1e12;
+  border: 2px solid #4a3418;
+  border-radius:6px;
+  padding: 10px;
+  box-shadow:
+    0 8px 28px rgba(0,0,0,0.32),
+    4px 4px 0 rgba(0,0,0,0.18),
+    inset 0 1px 0 rgba(255,255,255,0.04);
+  position: relative;
+  animation: float 4s ease-in-out infinite;
+}
+.cake-box:nth-child(2) { animation-delay:0.7s; }
+
+.cake-box-lid {
+  position:absolute;
+  top:-8px; left:4px; right:4px;
+  height:14px;
+  background: #3a2a14;
+  border:2px solid #5a4020;
+  border-radius:3px 3px 0 0;
+}
+.cake-box-inner {
+  background:#1e1408;
+  border-radius:4px;
+  padding:12px 8px 8px;
+  position:relative;
+  overflow:hidden;
+}
+.cake-box-inner::after {
+  content:'';
+  position:absolute;
+  bottom:0; left:0; right:0;
+  height:8px;
+  background: linear-gradient(180deg, transparent, rgba(0,0,0,0.35));
+}
+#slide2 .cake-box-inner > div:last-child {
+  color: rgba(255,180,100,0.35) !important;
+}
+
+/* TOP-DOWN CAKE CIRCLE */
+.cake-circle {
+  width:100%;
+  aspect-ratio:1;
+  border-radius:50%;
+  position:relative;
+  margin:0 auto 6px;
+  background: conic-gradient(
+    #c4924a 0deg, #d4a96a 60deg, #c4924a 120deg,
+    #d8b070 180deg, #c4924a 240deg, #d4a96a 300deg, #c4924a 360deg
+  );
+  box-shadow: inset 0 0 10px rgba(0,0,0,0.4), 0 3px 14px rgba(0,0,0,0.45);
+  padding:13px;
+}
+.cake-frosting {
+  width:100%;
+  height:100%;
+  border-radius:50%;
+  background:
+    radial-gradient(ellipse at 38% 32%, #fff9f5 0%, #f2ddd0 38%, #e8ccc0 62%, #d9b8a8 100%);
+  box-shadow:
+    inset 0 -3px 10px rgba(0,0,0,0.15),
+    inset 4px 4px 10px rgba(255,255,255,0.65);
+  position:relative;
+  overflow:visible;
+}
+
+/* Frosting texture blobs */
+.cake-frosting::before {
+  content:'';
+  position:absolute;
+  inset:0;
+  border-radius:50%;
+  background:
+    radial-gradient(circle at 22% 78%, rgba(255,255,255,0.75) 0%, transparent 22%),
+    radial-gradient(circle at 72% 24%, rgba(255,255,255,0.65) 0%, transparent 18%),
+    radial-gradient(circle at 58% 68%, rgba(255,255,255,0.45) 0%, transparent 20%),
+    radial-gradient(circle at 42% 44%, rgba(255,235,225,0.55) 0%, transparent 28%);
+  pointer-events:none;
+}
+
+/* Sprinkles */
+.sprinkle {
+  position:absolute;
+  border-radius:3px;
+  animation: sprinkleFloat 2s ease-in-out infinite;
+}
+
+/* Icing letters on cake */
+.cake-letters {
+  position:absolute;
+  inset:0;
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  justify-content:center;
+  gap:2px;
+  padding:10px;
+}
+.icing-letter {
+  font-family: 'Montserrat', sans-serif;
+  font-weight:900;
+  font-size:clamp(14px, 5vw, 20px);
+  color:#b02020;
+  text-shadow:
+    0 1px 0 rgba(255,255,255,0.35),
+    0 2px 5px rgba(0,0,0,0.25);
+  display:inline-block;
+  line-height:1;
+  filter: drop-shadow(0 1px 2px rgba(0,0,0,0.18));
+}
+
+/* WISH CARD */
+.wish-card {
+  background:#fffaf4;
+  border: 1.5px solid #f0dcc8;
+  border-left: 4px solid #e85d75;
+  border-radius:8px;
+  padding:20px;
+  max-width:440px;
+  width:100%;
+  position:relative;
+  backdrop-filter:none;
+  box-shadow: 0 4px 22px rgba(160,80,40,0.10), 0 1px 3px rgba(0,0,0,0.04);
+}
+.wish-card::before {
+  content:'❝';
+  position:absolute;
+  top:-9px; left:12px;
+  font-size:28px;
+  color:rgba(232,93,117,0.2);
+  font-family:Georgia, serif;
+  line-height:1;
+}
+.wish-paragraph {
+  font-size:clamp(12px,3.2vw,14px);
+  line-height:1.75;
+  color:#4a3020;
+  font-weight:400;
+  margin-bottom:12px;
+}
+.wish-paragraph:last-of-type { margin-bottom:0; }
+.wish-highlight {
+  color:#8a4a9a;
+  font-weight:700;
+}
+.wish-paragraph:nth-of-type(4n+1) .wish-highlight { color:#c0392b; }
+.wish-paragraph:nth-of-type(4n+3) .wish-highlight { color:#c05820; }
+.wish-divider {
+  width:40px; height:2px;
+  background:linear-gradient(90deg, transparent, #f0b8a0, transparent);
+  margin:12px auto;
+}
+
+#slide2 .btn-red {
+  background:#e85d75;
+  color:#fff;
+  box-shadow:0 4px 18px rgba(232,93,117,0.4);
+}
+#slide2 .btn-red:hover {
+  box-shadow:0 6px 24px rgba(232,93,117,0.55);
+}
+
+
+/* =====================================================
+   SLIDE 3 — SPIDER-VERSE COMIC
+===================================================== */
+#slide3 {
+  background: #f5f0e8;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  padding:20px 16px 28px;
+  position:relative;
+  overflow:hidden;
+  min-height:100vh;
+}
+
+/* Comic halftone background */
+#slide3::before {
+  content:'';
+  position:absolute; inset:0;
+  background-image:
+    radial-gradient(circle, rgba(0,0,0,0.12) 1px, transparent 1px);
+  background-size:12px 12px;
+  pointer-events:none;
+  z-index:0;
+}
+
+/* Diagonal color blocks */
+.s3-bg-red {
+  position:absolute;
+  top:0; right:0;
+  width:45%; height:50%;
+  background:#e8192c;
+  clip-path: polygon(30% 0, 100% 0, 100% 100%, 0% 100%);
+  z-index:0;
+  opacity:0.9;
+}
+.s3-bg-yellow {
+  position:absolute;
+  bottom:0; left:0;
+  width:40%; height:35%;
+  background:#f5c400;
+  clip-path: polygon(0 30%, 100% 0, 100% 100%, 0 100%);
+  z-index:0;
+  opacity:0.85;
+}
+.s3-bg-black {
+  position:absolute;
+  bottom:0; right:0;
+  width:35%; height:25%;
+  background:#1a1a2e;
+  clip-path: polygon(30% 0, 100% 0, 100% 100%, 0 100%);
+  z-index:0;
+  opacity:0.9;
+}
+
+/* Miles placeholder area */
+.miles-container {
+  position:relative;
+  z-index:10;
+  width:100%;
+  max-width:340px;
+  margin-bottom:0;
+}
+.miles-img-wrap {
+  width:200px;
+  margin:0 auto;
+  position:relative;
+  border-radius:4px;
+  overflow:hidden;
+  /* Miles Drop animation added via JS on active */
+}
+.miles-img-wrap img {
+  width:100%; height:100%;
+  object-fit:cover;
+}
+.miles-placeholder-label {
+  position:absolute; inset:0;
+  display:flex; align-items:center; justify-content:center;
+  flex-direction:column; gap:4px;
+  background:linear-gradient(135deg, #1a1a2e, #2d1b4e);
+  color:rgba(255,255,255,0.5);
+  font-size:9px;
+  letter-spacing:1px;
+  text-align:center;
+  padding:8px;
+}
+/* REPLACE THIS IMAGE: swap <img> src to your Miles character image */
+
+/* Central comic card */
+.comic-card {
+  background:#fff;
+  border:4px solid #000;
+  border-radius:8px;
+  box-shadow: 6px 6px 0 #000;
+  padding:20px 18px;
+  max-width:380px;
+  width:100%;
+  position:relative;
+  z-index:10;
+}
+.comic-card-header {
+  font-size:11px;
+  letter-spacing:3px;
+  font-weight:800;
+  color:#e8192c;
+  text-transform:uppercase;
+  margin-bottom:12px;
+  border-bottom:2px solid #000;
+  padding-bottom:8px;
+}
+.comic-panel-text {
+  font-size:clamp(13px, 3.5vw, 15px);
+  font-weight:600;
+  color:#1a1a1a;
+  line-height:1.5;
+  margin-bottom:10px;
+}
+
+/* Speech bubbles that burst OUT of the card */
+.speech-bubble-wrap {
+  position:relative;
+  margin:0 -8px;
+}
+.speech-bubble {
+  background:#fff;
+  border:3px solid #000;
+  border-radius:12px;
+  padding:12px 16px;
+  font-size:clamp(12px, 3.5vw, 14px);
+  font-weight:700;
+  line-height:1.4;
+  position:relative;
+  box-shadow: 4px 4px 0 rgba(0,0,0,0.8);
+  margin:8px 0;
+}
+.speech-bubble::before {
+  content:'';
+  position:absolute;
+  left:20px;
+  bottom:-14px;
+  width:0; height:0;
+  border-left:8px solid transparent;
+  border-right:8px solid transparent;
+  border-top:14px solid #000;
+}
+.speech-bubble::after {
+  content:'';
+  position:absolute;
+  left:23px;
+  bottom:-10px;
+  width:0; height:0;
+  border-left:5px solid transparent;
+  border-right:5px solid transparent;
+  border-top:10px solid #fff;
+}
+.bubble-gray {
+  background:#f0f0f0;
+}
+.bubble-italic { font-style:italic; color:#444; font-size:clamp(11px,3vw,13px); }
+
+/* BIG QUOTE BUBBLE — pops out dramatically */
+.quote-burst {
+  background:#e8192c;
+  border:4px solid #000;
+  border-radius:6px;
+  padding:14px 18px;
+  margin:12px -12px;
+  position:relative;
+  box-shadow: 5px 5px 0 #000;
+  transform:rotate(-1.5deg);
+  --rot:-1.5deg;
+}
+.quote-burst-text {
+  font-size:clamp(16px, 5vw, 22px);
+  font-weight:900;
+  color:#fff;
+  text-transform:uppercase;
+  letter-spacing:1px;
+  line-height:1.1;
+  text-shadow: 2px 2px 0 rgba(0,0,0,0.4);
+}
+.quote-burst-en {
+  font-size:clamp(10px, 2.5vw, 12px);
+  color:rgba(255,255,255,0.7);
+  font-style:italic;
+  font-weight:500;
+  margin-bottom:4px;
+}
+
+/* Yellow "NAH" burst bubble */
+.nah-burst {
+  background:#f5c400;
+  border:4px solid #000;
+  border-radius:6px;
+  padding:14px 18px;
+  margin:12px -16px;
+  position:relative;
+  box-shadow: 5px 5px 0 #000;
+  transform:rotate(1deg);
+  --rot:1deg;
+  z-index:12;
+}
+.nah-burst-text {
+  font-size:clamp(15px, 5vw, 20px);
+  font-weight:900;
+  color:#1a1a1a;
+  letter-spacing:0.5px;
+  line-height:1.2;
+}
+.nah-en {
+  font-size:clamp(9px, 2.5vw, 11px);
+  color:rgba(0,0,0,0.5);
+  font-style:italic;
+  margin-bottom:4px;
+}
+
+.leap-text {
+  display:inline-block;
+  background:#1a1a2e;
+  color:#00d4ff;
+  font-size:11px;
+  letter-spacing:2px;
+  padding:4px 12px;
+  border-radius:3px;
+  font-weight:700;
+  margin-top:8px;
+  border:1px solid rgba(0,212,255,0.4);
+}
+
+.comic-panel-small {
+  font-size:11px;
+  color:#555;
+  font-weight:600;
+  letter-spacing:0.5px;
+  margin-top:8px;
+}
+
+/* Miles drop animation */
+.miles-drop { animation: milesDrop 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards; }
+
+
+/* =====================================================
+   SLIDE 4 — STEAM STORE
+===================================================== */
+#slide4 {
+  background: var(--steam-bg2);
+  display:flex;
+  flex-direction:column;
+  padding:0;
+  min-height:100vh;
+  overflow-y:auto;
+}
+
+/* Steam Header */
+.steam-header {
+  background: linear-gradient(180deg, #1e3448 0%, #17263c 100%);
+  padding:12px 16px;
+  display:flex;
+  align-items:center;
+  gap:10px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  flex-shrink:0;
+  position:sticky; top:0; z-index:20;
+}
+.steam-logo {
+  width:32px; height:32px;
+  flex-shrink:0;
+}
+.steam-header-title {
+  font-size:18px;
+  font-weight:800;
+  color:#fff;
+  letter-spacing:0.5px;
+}
+.steam-header-right { margin-left:auto; }
+.steam-search-icon { color:var(--steam-text); font-size:18px; }
+
+/* Featured Game Banner */
+.steam-featured {
+  position:relative;
+  width:100%;
+  background:linear-gradient(135deg, #0d1f2d 0%, #1b3a52 100%);
+  overflow:hidden;
+}
+.steam-featured-img {
+  width:100%;
+  aspect-ratio:16/9;
+  object-fit:cover;
+  display:block;
+}
+.steam-featured-placeholder {
+  width:100%;
+  aspect-ratio:16/9;
+  background: linear-gradient(135deg, #0d1b2a 0%, #1a3348 50%, #0f2233 100%);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  position:relative;
+  overflow:hidden;
+}
+.steam-featured-placeholder::before {
+  content:'';
+  position:absolute; inset:0;
+  background: linear-gradient(90deg, transparent 0%, rgba(102,192,244,0.03) 50%, transparent 100%);
+  background-size:200% 100%;
+  animation:shimmer 3s infinite;
+}
+.steam-placeholder-icon {
+  font-size:40px;
+  margin-bottom:8px;
+  opacity:0.4;
+}
+.steam-placeholder-text {
+  font-size:11px;
+  color:rgba(102,192,244,0.4);
+  letter-spacing:2px;
+  text-transform:uppercase;
+  text-align:center;
+  padding:0 20px;
+}
+/* REPLACE: Add an actual Symphonium screenshot as <img> here */
+
+.steam-featured-info {
+  padding:12px 16px;
+  background: linear-gradient(180deg, #1e3347 0%, #17263c 100%);
+}
+.steam-game-title {
+  font-size:22px;
+  font-weight:800;
+  color:#fff;
+  margin-bottom:4px;
+  letter-spacing:0.3px;
+}
+.steam-game-tagline {
+  font-size:12px;
+  color:var(--steam-text);
+  margin-bottom:10px;
+  font-weight:400;
+}
+.steam-price-block {
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+.steam-price-free {
+  font-size:18px;
+  font-weight:800;
+  color:var(--steam-blue2);
+}
+.steam-price-note {
+  font-size:11px;
+  color:rgba(102,192,244,0.6);
+  font-style:italic;
+}
+
+/* Tabs */
+.steam-tabs {
+  display:flex;
+  overflow-x:auto;
+  padding:0 16px;
+  background:#17263c;
+  border-bottom:1px solid rgba(255,255,255,0.07);
+  flex-shrink:0;
+  scrollbar-width:none;
+}
+.steam-tabs::-webkit-scrollbar { display:none; }
+.steam-tab {
+  padding:10px 14px;
+  font-size:12px;
+  font-weight:700;
+  letter-spacing:0.5px;
+  color:var(--steam-text);
+  white-space:nowrap;
+  cursor:pointer;
+  border-bottom:2px solid transparent;
+  flex-shrink:0;
+  transition:color 0.2s;
+}
+.steam-tab.active {
+  color:#fff;
+  border-bottom-color:var(--steam-blue2);
+}
+
+/* Badges row */
+.steam-badges {
+  padding:12px 16px;
+  display:flex;
+  flex-wrap:wrap;
+  gap:6px;
+  background:var(--steam-bg);
+}
+.steam-badge {
+  padding:4px 10px;
+  border-radius:2px;
+  font-size:10px;
+  font-weight:700;
+  letter-spacing:0.8px;
+  text-transform:uppercase;
+  opacity:0;
+  transition:opacity 0.3s;
+}
+.badge-positive {
+  background:var(--steam-discount);
+  color:var(--steam-positive);
+}
+.badge-blue {
+  background:rgba(26,159,255,0.2);
+  color:var(--steam-blue2);
+  border:1px solid rgba(26,159,255,0.3);
+}
+.badge-gold {
+  background:rgba(255,200,0,0.15);
+  color:#ffd60a;
+  border:1px solid rgba(255,200,0,0.3);
+  animation:pulse-glow 2s infinite;
+}
+.badge-purple {
+  background:rgba(191,90,242,0.15);
+  color:#bf5af2;
+  border:1px solid rgba(191,90,242,0.3);
+}
+
+.badge-show { opacity:1 !important; }
+
+/* Developer info */
+.steam-dev-row {
+  padding:0 16px 6px;
+  background:var(--steam-bg);
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+}
+.steam-dev-item {
+  display:flex;
+  gap:4px;
+  align-items:baseline;
+}
+.steam-dev-label {
+  font-size:10px;
+  color:rgba(255,255,255,0.4);
+  text-transform:uppercase;
+  letter-spacing:0.5px;
+}
+.steam-dev-value {
+  font-size:11px;
+  color:var(--steam-blue2);
+  font-weight:600;
+}
+
+/* Reviews block */
+.steam-reviews {
+  padding:12px 16px;
+  background:var(--steam-bg);
+  border-top:1px solid rgba(255,255,255,0.06);
+  border-bottom:1px solid rgba(255,255,255,0.06);
+}
+.steam-review-overall {
+  font-size:11px;
+  color:rgba(255,255,255,0.5);
+  margin-bottom:4px;
+}
+.steam-review-positive {
+  font-size:16px;
+  font-weight:800;
+  color:var(--steam-positive);
+}
+.steam-review-count {
+  font-size:10px;
+  color:rgba(255,255,255,0.3);
+  margin-top:2px;
+}
+
+/* Tags */
+.steam-tags {
+  padding:10px 16px;
+  background:var(--steam-bg);
+  display:flex;
+  flex-wrap:wrap;
+  gap:6px;
+}
+.steam-tag {
+  padding:4px 10px;
+  background:rgba(255,255,255,0.07);
+  border:1px solid rgba(255,255,255,0.1);
+  border-radius:2px;
+  font-size:10px;
+  color:var(--steam-text);
+  font-weight:500;
+  cursor:pointer;
+  transition:background 0.2s;
+}
+.steam-tag:hover { background:rgba(255,255,255,0.12); }
+
+/* Description */
+.steam-description {
+  padding:16px;
+  background:var(--steam-bg);
+  margin-top:8px;
+}
+.steam-desc-title {
+  font-size:13px;
+  font-weight:800;
+  color:var(--steam-blue2);
+  text-transform:uppercase;
+  letter-spacing:1px;
+  margin-bottom:10px;
+  border-bottom:1px solid rgba(102,192,244,0.15);
+  padding-bottom:6px;
+}
+.steam-desc-text {
+  font-size:12px;
+  color:var(--steam-text);
+  line-height:1.7;
+  font-weight:400;
+}
+.steam-desc-motivational {
+  margin-top:12px;
+  padding:12px;
+  background:rgba(102,192,244,0.06);
+  border-left:3px solid var(--steam-blue);
+  border-radius:0 4px 4px 0;
+  font-size:12px;
+  color:rgba(255,255,255,0.75);
+  line-height:1.6;
+  font-style:italic;
+}
+
+/* Bottom CTA */
+.steam-cta {
+  padding:16px;
+  background: linear-gradient(180deg, var(--steam-bg) 0%, var(--steam-bg2) 100%);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:8px;
+}
+
+
+/* =====================================================
+   SLIDE 5 — VALORANT WISH GENERATOR
+===================================================== */
+#slide5 {
+  background: #0a0a12;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  padding:24px 16px 32px;
+  position:relative;
+  overflow:hidden;
+  min-height:100vh;
+}
+#slide5::before {
+  content:'';
+  position:absolute; inset:0;
+  background:
+    radial-gradient(ellipse at 80% 50%, rgba(191,90,242,0.1) 0%, transparent 50%),
+    radial-gradient(ellipse at 20% 80%, rgba(255,45,85,0.08) 0%, transparent 50%);
+  pointer-events:none;
+}
+
+.s5-grid-bg {
+  position:absolute; inset:0;
+  background-image:
+    linear-gradient(rgba(255,45,85,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,45,85,0.04) 1px, transparent 1px);
+  background-size: 40px 40px;
+  pointer-events:none;
+}
+
+.omen-container {
+  position:absolute;
+  right:-20px; bottom:60px;
+  width:140px;
+  opacity:0.5;
+  pointer-events:none;
+  z-index:1;
+}
+/* REPLACE: omen-placeholder.png */
+.omen-img-wrap {
+  width:100%; height:200px;
+  background:linear-gradient(180deg, rgba(191,90,242,0.2) 0%, transparent 100%);
+  border-radius:8px;
+  display:flex; align-items:center; justify-content:center;
+  flex-direction:column; gap:4px;
+  color:rgba(191,90,242,0.4);
+  font-size:9px; letter-spacing:1px; text-align:center;
+}
+.omen-aura {
+  position:absolute; bottom:0; left:50%;
+  transform:translateX(-50%);
+  width:80%; height:60%;
+  background:radial-gradient(ellipse, rgba(191,90,242,0.3) 0%, transparent 70%);
+  pointer-events:none;
+}
+
+.s5-valo-header {
+  text-align:center;
+  margin-bottom:20px;
+  position:relative; z-index:2;
+}
+.s5-valo-label {
+  font-size:10px;
+  letter-spacing:4px;
+  color:rgba(255,45,85,0.7);
+  text-transform:uppercase;
+  font-weight:700;
+  margin-bottom:6px;
+}
+.s5-valo-title {
+  font-size:clamp(22px,6vw,32px);
+  font-weight:900;
+  color:#fff;
+  letter-spacing:2px;
+  text-transform:uppercase;
+}
+.s5-valo-sub {
+  font-size:12px;
+  color:rgba(255,255,255,0.45);
+  margin-top:6px;
+  font-weight:400;
+}
+
+.s5-terminal {
+  width:100%;
+  max-width:400px;
+  background:#0d1117;
+  border:1px solid rgba(255,45,85,0.3);
+  border-radius:6px;
+  overflow:hidden;
+  position:relative;
+  z-index:2;
+  box-shadow:
+    0 0 30px rgba(255,45,85,0.1),
+    0 8px 32px rgba(0,0,0,0.5);
+}
+.s5-terminal-header {
+  background:linear-gradient(90deg, #1a0008, #200010);
+  padding:8px 14px;
+  display:flex;
+  align-items:center;
+  gap:6px;
+  border-bottom:1px solid rgba(255,45,85,0.2);
+}
+.terminal-dot {
+  width:8px; height:8px;
+  border-radius:50%;
+}
+.terminal-title {
+  font-size:10px;
+  letter-spacing:2px;
+  color:rgba(255,45,85,0.6);
+  text-transform:uppercase;
+  font-weight:700;
+  margin-left:4px;
+}
+
+.s5-wish-display {
+  padding:20px;
+  min-height:100px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  position:relative;
+}
+.s5-wish-text {
+  font-size:clamp(13px,3.5vw,15px);
+  font-weight:600;
+  color:#fff;
+  text-align:center;
+  line-height:1.6;
+  opacity:0;
+  transition:opacity 0.3s;
+}
+.s5-wish-text.show { opacity:1; animation:wishGlitch 0.5s ease forwards; }
+.s5-wish-idle {
+  font-size:11px;
+  color:rgba(255,255,255,0.2);
+  letter-spacing:2px;
+  text-align:center;
+}
+.s5-counter {
+  text-align:center;
+  font-size:10px;
+  letter-spacing:2px;
+  color:rgba(255,45,85,0.5);
+  padding:0 20px 12px;
+  font-weight:700;
+}
+
+.s5-status {
+  font-size:10px;
+  letter-spacing:2px;
+  color:rgba(191,90,242,0.5);
+  text-align:center;
+  margin-top:16px;
+  position:relative; z-index:2;
+}
+.s5-status-dot {
+  display:inline-block;
+  width:6px; height:6px;
+  background:#bf5af2;
+  border-radius:50%;
+  margin-right:6px;
+  animation:terminalBlink 1s infinite;
+}
+
+.s5-next-btn { margin-top:20px; position:relative; z-index:2; }
+
+
+/* =====================================================
+   SLIDE 6 — LEVEL UP
+===================================================== */
+#slide6 {
+  background: #050510;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  padding:24px 16px;
+  position:relative;
+  overflow:hidden;
+  min-height:100vh;
+}
+#slide6::before {
+  content:'';
+  position:absolute; inset:0;
+  background:
+    radial-gradient(ellipse at 50% 30%, rgba(255,214,10,0.12) 0%, transparent 60%),
+    radial-gradient(ellipse at 50% 80%, rgba(191,90,242,0.1) 0%, transparent 60%);
+  pointer-events:none;
+}
+
+.s6-particles { position:absolute; inset:0; pointer-events:none; overflow:hidden; }
+.confetti-piece {
+  position:absolute;
+  width:8px; height:8px;
+  border-radius:2px;
+  animation:confettiFall linear infinite;
+}
+
+.s6-achievement-frame {
+  border:2px solid rgba(255,214,10,0.4);
+  border-radius:12px;
+  padding:28px 24px;
+  max-width:380px;
+  width:100%;
+  position:relative;
+  background:rgba(255,214,10,0.03);
+  box-shadow:
+    0 0 40px rgba(255,214,10,0.1),
+    0 0 80px rgba(191,90,242,0.05),
+    inset 0 0 30px rgba(255,214,10,0.02);
+  text-align:center;
+}
+.s6-achievement-frame::before {
+  content:'⭐ ACHIEVEMENT UNLOCKED ⭐';
+  position:absolute;
+  top:-10px; left:50%;
+  transform:translateX(-50%);
+  background:#050510;
+  padding:0 12px;
+  font-size:9px;
+  letter-spacing:2px;
+  color:rgba(255,214,10,0.5);
+  font-weight:700;
+  white-space:nowrap;
+}
+
+.s6-lvl-prefix {
+  font-size:11px;
+  letter-spacing:4px;
+  color:rgba(255,214,10,0.6);
+  text-transform:uppercase;
+  font-weight:700;
+  margin-bottom:8px;
+}
+.s6-lvl-title {
+  font-size:clamp(52px,14vw,80px);
+  font-weight:900;
+  line-height:0.9;
+  background:linear-gradient(135deg, #ffd60a 0%, #ff9500 50%, #ffd60a 100%);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  background-clip:text;
+  opacity:0;
+  letter-spacing:4px;
+}
+.s6-lvl-subtitle {
+  font-size:clamp(11px,3vw,13px);
+  color:rgba(255,255,255,0.5);
+  letter-spacing:3px;
+  font-weight:700;
+  text-transform:uppercase;
+  margin-top:6px;
+  opacity:0;
+}
+.s6-ua-text {
+  font-size:clamp(13px,3.5vw,15px);
+  color:rgba(255,255,255,0.8);
+  margin-top:16px;
+  font-weight:500;
+  opacity:0;
+}
+.s6-ua-congrats {
+  font-size:clamp(12px,3vw,14px);
+  color:rgba(255,255,255,0.55);
+  font-weight:400;
+  margin-top:4px;
+  opacity:0;
+}
+
+.s6-divider {
+  width:100%; height:1px;
+  background:linear-gradient(90deg, transparent, rgba(255,214,10,0.3), transparent);
+  margin:20px 0;
+}
+
+.s6-bonuses {
+  width:100%;
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+  opacity:0;
+}
+.s6-bonus-item {
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:8px 12px;
+  background:rgba(255,255,255,0.03);
+  border:1px solid rgba(255,255,255,0.07);
+  border-radius:6px;
+  font-size:12px;
+  color:rgba(255,255,255,0.65);
+  font-weight:500;
+}
+.s6-bonus-icon {
+  width:24px; height:24px;
+  background:rgba(255,214,10,0.1);
+  border:1px solid rgba(255,214,10,0.2);
+  border-radius:4px;
+  display:flex; align-items:center; justify-content:center;
+  font-size:13px;
+  flex-shrink:0;
+}
+
+.s6-final-text {
+  margin-top:20px;
+  font-size:clamp(12px,3vw,14px);
+  color:rgba(255,255,255,0.6);
+  line-height:1.6;
+  font-weight:400;
+  opacity:0;
+}
+.s6-bd-greeting {
+  margin-top:16px;
+  font-size:clamp(16px,4.5vw,20px);
+  font-weight:800;
+  color:#fff;
+  text-align:center;
+  opacity:0;
+}
+.s6-emoji { font-size:28px; margin-top:4px; display:block; }
+
+
+/* Bottom nav button spacing */
+.slide-btn-row {
+  margin-top:20px;
+  display:flex;
+  justify-content:center;
+  flex-shrink:0;
+}
+</style>
+</head>
+
+<body>
+
+<!-- Progress Indicator -->
+<div class="progress-indicator" id="progressIndicator">1 / 6</div>
+
+<!-- ========== SWIPER ========== -->
+<div class="swiper" id="mainSwiper">
+  <div class="swiper-wrapper">
+
+    <!-- ================================================
+         SLIDE 1 — GLITCH INTRO
+    ================================================ -->
+    <div class="swiper-slide" id="slide1">
+      <!-- Floating particles -->
+      <div class="s1-particles" id="s1particles"></div>
+
+      <!-- Glitch blocks -->
+      <div class="s1-glitch-block" style="top:20%;left:10%;width:30%;"></div>
+      <div class="s1-glitch-block" style="top:60%;left:50%;width:20%;opacity:0.4;animation-delay:.1s"></div>
+      <div class="s1-glitch-block" style="top:80%;left:5%;width:15%;opacity:0.3;animation-delay:.2s"></div>
+
+      <!-- Init label -->
+      <div class="s1-init" id="s1init">
+        BIRTHDAY_PROTOCOL_LOADING<span>_</span>
+      </div>
+
+      <!-- Main heading -->
+      <h1 class="s1-heading" id="s1heading" data-text="Хелоу, Ніка.">
+        Хелоу, Ніка.
+      </h1>
+
+      <!-- Subtexts -->
+      <p class="s1-sub" id="s1sub1">Ця відкриточка - лише для тебе.</p>
+      <p class="s1-sub2" id="s1sub2">Гортай далі. Там дещо є.</p>
+
+      <p class="s1-exe" id="s1exe">birthday_protocol.exe запущено…</p>
+
+      <div class="s1-btn" id="s1btn">
+        <button class="btn-neon btn-red" onclick="goToSlide(1)">
+          Почати →
+        </button>
+      </div>
+    </div><!-- /slide1 -->
+
+
+    <!-- ================================================
+         SLIDE 2 — CAKES & BIRTHDAY WISH
+    ================================================ -->
+    <div class="swiper-slide" id="slide2">
+      <div style="display:flex;flex-direction:column;align-items:center;padding:28px 16px 32px;min-height:100vh;position:relative;z-index:1;">
+
+        <!-- CAKES ROW -->
+        <div class="cakes-row" id="cakesRow">
+
+          <!-- CAKE 1 -->
+          <div class="cake-box">
+            <div class="cake-box-lid"></div>
+            <div class="cake-box-inner">
+              <div class="cake-circle">
+                <div class="cake-frosting" id="cake1frosting">
+                  <!-- Sprinkles injected by JS -->
+                  <div class="cake-letters">
+                    <span class="icing-letter" style="transform:rotate(-8deg) translate(-2px,3px)">З</span>
+                    <span class="icing-letter" style="transform:rotate(5deg) translate(1px,-2px)">&nbsp;</span>
+                    <span class="icing-letter" style="transform:rotate(-3deg) translate(2px,4px)">Д</span>
+                    <span class="icing-letter" style="transform:rotate(5deg) translate(1px,2px)">Н</span>
+                    <span class="icing-letter" style="transform:rotate(6deg) translate(3px, 7px)">Е</span>
+                    <span class="icing-letter" style="transform:rotate(-7deg) translate(5px,2px)">М</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- CAKE 2 -->
+          <div class="cake-box" style="animation-delay:0.5s">
+            <div class="cake-box-lid"></div>
+            <div class="cake-box-inner">
+              <div class="cake-circle">
+                <div class="cake-frosting" id="cake2frosting">
+                  <!-- Sprinkles injected by JS -->
+                  <div class="cake-letters" style="font-size:clamp(9px,3vw,14px);">
+                    <span class="icing-letter" style="transform:rotate(6deg) translate(1px,3px);font-size:clamp(9px,2.8vw,13px)">Н</span>
+                    <span class="icing-letter" style="transform:rotate(-9deg) translate(-1px,5px);font-size:clamp(9px,2.8vw,13px)">А</span>
+                    <span class="icing-letter" style="transform:rotate(4deg) translate(2px,-2px);font-size:clamp(9px,2.8vw,13px)">Р</span>
+                    <span class="icing-letter" style="transform:rotate(-5deg) translate(-3px,3px);font-size:clamp(9px,2.8vw,13px)">О</span>
+                    <span class="icing-letter" style="transform:rotate(8deg) translate(1px,4px);font-size:clamp(9px,2.8vw,13px)">Д</span>
+                    <span class="icing-letter" style="transform:rotate(-4deg) translate(3px,-1px);font-size:clamp(9px,2.8vw,13px)">Ж</span>
+                    <span class="icing-letter" style="transform:rotate(7deg) translate(-2px,5px);font-size:clamp(9px,2.8vw,13px)">Е</span>
+                    <span class="icing-letter" style="transform:rotate(-6deg) translate(2px,2px);font-size:clamp(9px,2.8vw,13px)">Н</span>
+                    <span class="icing-letter" style="transform:rotate(3deg) translate(-1px,4px);font-size:clamp(9px,2.8vw,13px)">Н</span>
+                    <span class="icing-letter" style="transform:rotate(-8deg) translate(3px,3px);font-size:clamp(9px,2.8vw,13px)">Я</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div><!-- /cakes-row -->
+
+        <!-- WISH CARD -->
+        <div class="wish-card">
+          <div class="wish-paragraph">
+            Перш за все, бажаю тобі <span class="wish-highlight">міцного здоров'ячка</span> – бо це база, без якої нікуда.
+          </div>
+          <div class="wish-divider"></div>
+          <div class="wish-paragraph">
+            Бажаю <span class="wish-highlight">справжнього щастя</span>. От щоб просто було і нікуди не зникало.
+          </div>
+          <div class="wish-divider"></div>
+          <div class="wish-paragraph">
+            Бажаю тобі <span class="wish-highlight">горіти тим, що любиш</span>: творити, малювати, вигадувати, пробувати, створювати свої світи – і не стухати. Ніколи.
+          </div>
+          <div class="wish-divider"></div>
+          <div class="wish-paragraph">
+            Нехай у тебе <span class="wish-highlight">все складається</span>: навчання, майбутня кар'єра, власні проєкти, мрії, плани і всі-всі твої «хотєлки».
+          </div>
+          <div class="wish-divider"></div>
+          <div class="wish-paragraph" style="margin-bottom:0;">
+            І нехай можливостей буде не просто достатньо, а ще й <span class="wish-highlight">з запасом</span> – щоб вистачало і на потрібне, і на бажане, і на «а чом би й нє?»
+          </div>
+        </div>
+
+        <div class="slide-btn-row" style="padding-bottom:8px;">
+          <button class="btn-neon btn-red" onclick="goToSlide(2)">
+            Далі →
+          </button>
+        </div>
+
+      </div>
+    </div><!-- /slide2 -->
+
+
+    <!-- ================================================
+         SLIDE 3 — SPIDER-VERSE COMIC
+    ================================================ -->
+    <div class="swiper-slide" id="slide3">
+      <!-- Comic bg layers -->
+      <div class="s3-bg-red"></div>
+      <div class="s3-bg-yellow"></div>
+      <div class="s3-bg-black"></div>
+
+      <div style="display:flex;flex-direction:column;align-items:center;min-height:100vh;position:relative;z-index:5;">
+
+        <!-- Miles placeholder – drops from top on active -->
+        <div class="miles-container">
+          <div class="miles-img-wrap" id="milesWrap">
+              <img src="miles.png" alt="Miles Morales" />
+          </div>
+        </div>
+
+        <!-- Central Comic Card -->
+        <div class="comic-card" id="comicCard">
+          <div class="comic-card-header">
+            ✦ Від Майлза Моралеса ✦
+          </div>
+
+          <p class="comic-panel-text">
+            Від імені трушного Майлза – вітаю тебе з <strong>ТВОЇМ</strong> днем.
+          </p>
+
+          <!-- Bubble 1: "How your story..." -->
+          <div class="speech-bubble bubble-gray" id="bubble1">
+            <div class="bubble-italic">Коли тобі казатимуть:</div>
+            <div style="font-size:clamp(12px,3.5vw,15px);font-weight:800;color:#222;margin-top:4px;">
+              «How your story is<br>supposed to go…»
+            </div>
+          </div>
+
+          <!-- Big burst: NAH -->
+          <div class="nah-burst" id="bubble2">
+            <div class="nah-en">Відповідай впевнено:</div>
+            <div class="nah-burst-text">«Nah, I'ma do<br>my own thing.»</div>
+          </div>
+
+          <!-- Bubble 2: actions -->
+          <div class="speech-bubble" id="bubble3" style="background:#f0e8ff;border-color:#6b21a8;">
+            <div style="color:#4c1d95;font-weight:700;font-size:clamp(13px,3.5vw,15px);">
+              Твори. Експериментуй. Малюй.
+            </div>
+          </div>
+
+          <!-- Red burst: leap -->
+          <div class="quote-burst" id="bubble4">
+            <div class="quote-burst-text">Leap of Faith</div>
+            <div style="font-size:clamp(11px,3vw,13px);color:rgba(255,255,255,0.85);font-weight:600;margin-top:4px;">
+              Не бійся у відповідний момент зробити <em>Стрибок Віри</em>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="slide-btn-row">
+          <button class="btn-neon btn-red" onclick="goToSlide(3)">
+            Далі →
+          </button>
+        </div>
+
+      </div>
+    </div><!-- /slide3 -->
+
+
+    <!-- ================================================
+         SLIDE 4 — STEAM STORE
+    ================================================ -->
+    <div class="swiper-slide" id="slide4">
+      <!-- Steam Header -->
+      <div class="steam-header">
+        <!-- Steam Logo SVG (simplified) -->
+         
+       <svg fill="#fafafa"  class="steam-logo"  viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <title>steam</title> <path d="M18.102 12.129c0-0 0-0 0-0.001 0-1.564 1.268-2.831 2.831-2.831s2.831 1.268 2.831 2.831c0 1.564-1.267 2.831-2.831 2.831-0 0-0 0-0.001 0h0c-0 0-0 0-0.001 0-1.563 0-2.83-1.267-2.83-2.83 0-0 0-0 0-0.001v0zM24.691 12.135c0-2.081-1.687-3.768-3.768-3.768s-3.768 1.687-3.768 3.768c0 2.081 1.687 3.768 3.768 3.768v0c2.080-0.003 3.765-1.688 3.768-3.767v-0zM10.427 23.76l-1.841-0.762c0.524 1.078 1.611 1.808 2.868 1.808 1.317 0 2.448-0.801 2.93-1.943l0.008-0.021c0.155-0.362 0.246-0.784 0.246-1.226 0-1.757-1.424-3.181-3.181-3.181-0.405 0-0.792 0.076-1.148 0.213l0.022-0.007 1.903 0.787c0.852 0.364 1.439 1.196 1.439 2.164 0 1.296-1.051 2.347-2.347 2.347-0.324 0-0.632-0.066-0.913-0.184l0.015 0.006zM15.974 1.004c-7.857 0.001-14.301 6.046-14.938 13.738l-0.004 0.054 8.038 3.322c0.668-0.462 1.495-0.737 2.387-0.737 0.001 0 0.002 0 0.002 0h-0c0.079 0 0.156 0.005 0.235 0.008l3.575-5.176v-0.074c0.003-3.12 2.533-5.648 5.653-5.648 3.122 0 5.653 2.531 5.653 5.653s-2.531 5.653-5.653 5.653h-0.131l-5.094 3.638c0 0.065 0.005 0.131 0.005 0.199 0 0.001 0 0.002 0 0.003 0 2.342-1.899 4.241-4.241 4.241-2.047 0-3.756-1.451-4.153-3.38l-0.005-0.027-5.755-2.383c1.841 6.345 7.601 10.905 14.425 10.905 8.281 0 14.994-6.713 14.994-14.994s-6.713-14.994-14.994-14.994c-0 0-0.001 0-0.001 0h0z"></path> </g></svg>
+        <span class="steam-header-title">Store</span>
+        <div class="steam-header-right">
+          <span class="steam-search-icon">🔍</span>
+        </div>
+      </div>
+
+      <!-- Featured Game -->
+      <div class="steam-featured">
+                 <img class="steam-featured-img" src="sum.jpg" alt="Symphonium Screenshot" />
+        <div class="steam-featured-info">
+          <div class="steam-game-title">Symphonium</div>
+          <div class="steam-game-tagline">Гра, яку ти створиш — і яку відкриють тисячі.</div>
+          <div class="steam-price-block">
+            <span class="steam-price-free">Безцінно</span>
+            <span class="steam-price-note">· Доступно: у майбутньому, яке ти створиш сама</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tabs -->
+      <div class="steam-tabs">
+        <div class="steam-tab active">Огляд</div>
+        <div class="steam-tab">Відгуки</div>
+        <div class="steam-tab">Оновлення</div>
+        <div class="steam-tab">DLC</div>
+        <div class="steam-tab">Подібні ігри</div>
+      </div>
+
+      <!-- Badges -->
+      <div class="steam-badges" id="steamBadges">
+        <span class="steam-badge badge-positive" id="badge1">Overwhelmingly Positive</span>
+        <span class="steam-badge badge-gold" id="badge2">⭐ Top Seller</span>
+        <span class="steam-badge badge-blue" id="badge3">Millions of Players</span>
+        <span class="steam-badge badge-purple" id="badge4">Created with ❤️ Heart</span>
+        <span class="steam-badge badge-blue" id="badge5">Wishlist: ∞</span>
+      </div>
+
+      <!-- Dev info -->
+      <div class="steam-dev-row">
+        <div class="steam-dev-item">
+          <span class="steam-dev-label">Розробник:</span>
+          <span class="steam-dev-value">Nika</span>
+        </div>
+        <div class="steam-dev-item">
+          <span class="steam-dev-label">Видавець:</span>
+          <span class="steam-dev-value">Nika Games</span>
+        </div>
+        <div class="steam-dev-item">
+          <span class="steam-dev-label">Дата виходу:</span>
+          <span class="steam-dev-value">Незабаром</span>
+        </div>
+      </div>
+
+      <!-- Reviews -->
+      <div class="steam-reviews">
+        <div class="steam-review-overall">Загальні відгуки:</div>
+        <div class="steam-review-positive">Overwhelmingly Positive</div>
+        <div class="steam-review-count">На основі ∞ відгуків гравців</div>
+      </div>
+
+      <!-- Tags -->
+      <div class="steam-tags">
+        <span class="steam-tag">Indie</span>
+        <span class="steam-tag">Music</span>
+        <span class="steam-tag">Story Rich</span>
+        <span class="steam-tag">Atmospheric</span>
+        <span class="steam-tag">Singleplayer</span>
+        <span class="steam-tag">Beautiful</span>
+        <span class="steam-tag">Made with Love</span>
+        <span class="steam-tag">Ukrainian Dev</span>
+      </div>
+
+      <!-- Description -->
+      <div class="steam-description">
+        <div class="steam-desc-title">Про гру</div>
+        <div class="steam-desc-text">
+          Колись це може бути не просто мрією.<br><br>
+          Це може бути сторінка гри, яку <strong style="color:#66c0f4;">створила ти</strong>. І в яку грають тисячі людей.
+        </div>
+        <div class="steam-desc-motivational">
+          Якщо дуже хотіти, вчитись, пробувати і докладати зусиль – ти обов'язково цього досягнеш.
+        </div>
+      </div>
+
+      <!-- CTA -->
+      <div class="steam-cta">
+        <button class="btn-neon btn-steam" onclick="goToSlide(4)">
+          Далі ➜
+        </button>
+        <div style="font-size:10px;color:rgba(255,255,255,0.25);letter-spacing:1px;margin-top:4px;">
+          wishlist цю мрію прямо зараз
+        </div>
+      </div>
+
+    </div><!-- /slide4 -->
+
+
+    <!-- ================================================
+         SLIDE 5 — VALORANT WISH GENERATOR
+    ================================================ -->
+    <div class="swiper-slide" id="slide5">
+      <!-- Grid bg -->
+      <div class="s5-grid-bg"></div>
+
+      <!-- Header -->
+      <div class="s5-valo-header">
+        <div class="s5-valo-label">// TACTICAL BIRTHDAY PROTOCOL</div>
+        <div class="s5-valo-title">WISH<br>GENERATOR</div>
+        <div class="s5-valo-sub">Натисни кнопку – отримай баф на новий рік життя.</div>
+      </div>
+
+      <!-- Terminal -->
+      <div class="s5-terminal">
+        <div class="s5-terminal-header">
+          <div class="terminal-dot" style="background:#ff5f57;"></div>
+          <div class="terminal-dot" style="background:#febc2e;"></div>
+          <div class="terminal-dot" style="background:#28c840;"></div>
+          <span class="terminal-title">wish_pool.exe</span>
+        </div>
+
+        <div class="s5-wish-display">
+          <div class="s5-wish-text" id="wishText">
+            <span class="s5-wish-idle">— очікування команди —</span>
+          </div>
+        </div>
+
+        <div class="s5-counter" id="wishCounter">
+          wish_pool.exe активний
+        </div>
+
+        <div style="padding:0 20px 16px;text-align:center;">
+          <button class="btn-neon btn-red" id="generateBtn" onclick="generateWish()" style="width:100%;display:block;text-align:center;">
+            ⚡ Згенерувати побажання
+          </button>
+        </div>
+      </div>
+
+      <div class="s5-status">
+        <span class="s5-status-dot"></span>wish_pool.exe активний
+      </div>
+
+      <div class="s5-next-btn">
+        <button class="btn-neon btn-gold" onclick="goToSlide(5)">
+          Фінальний ап →
+        </button>
+      </div>
+    </div><!-- /slide5 -->
+
+
+    <!-- ================================================
+         SLIDE 6 — LEVEL UP
+    ================================================ -->
+    <div class="swiper-slide" id="slide6">
+      <!-- Confetti -->
+      <div class="s6-particles" id="confettiContainer"></div>
+
+      <div class="s6-achievement-frame">
+        <div class="s6-lvl-prefix">🏆 PLAYER ACHIEVEMENT 🏆</div>
+        <div class="s6-lvl-title" id="lvlTitle">LEVEL<br>UP</div>
+        <div class="s6-lvl-subtitle" id="lvlSubtitle">PLAYER NIKA · REACHED LVL 20</div>
+
+        <div class="s6-ua-text" id="lvlUa">Гравець Ніка досягає 20 рівня.</div>
+        <div class="s6-ua-congrats" id="lvlCongrats">раніше за мене апнулась °^°</div>
+
+        <div class="s6-divider"></div>
+
+        <div class="s6-bonuses" id="lvlBonuses">
+          <div class="s6-bonus-item">
+            <div class="s6-bonus-icon">🧪</div>
+            <span>Нових абілок: <strong style="color:#ffd60a;">0</strong></span>
+          </div>
+          <div class="s6-bonus-item">
+            <div class="s6-bonus-icon">⚡</div>
+            <span>Нових бафів: <strong style="color:#ffd60a;">0</strong></span>
+          </div>
+          <div class="s6-bonus-item">
+            <div class="s6-bonus-icon">💥</div>
+            <span>Драматичних змін: <strong style="color:#ffd60a;">0</strong></span>
+          </div>
+          <div class="s6-bonus-item">
+            <div class="s6-bonus-icon">✨</div>
+            <span>Зато число гарне: <strong style="color:#ffd60a;">+100</strong></span>
+          </div>
+        </div>
+
+        <div class="s6-final-text" id="lvlFinal">
+          20 – це просто новий рівень,<br>
+          зате з купою потенціалу.
+        </div>
+
+        <div class="s6-bd-greeting" id="lvlGreeting">
+          З Днем народження, Ніка.<br>
+          Вітаю з апом :)
+        </div>
+      </div>
+
+      <div class="slide-btn-row" style="margin-top:20px;">
+        <button class="btn-neon btn-cyan" onclick="goToSlide(0)">
+          ↺ Пройти ще раз
+        </button>
+      </div>
+    </div><!-- /slide6 -->
+
+  </div><!-- /swiper-wrapper -->
+</div><!-- /swiper -->
+
+
+<!-- Swiper JS -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+<script>
+/* =====================================================
+   SWIPER INIT
+===================================================== */
+const swiper = new Swiper('#mainSwiper', {
+  direction: 'horizontal',
+  loop: false,
+  speed: 600,
+  effect: 'slide',
+  allowTouchMove: true,
+  on: {
+    slideChange: function () {
+      updateProgress(this.activeIndex);
+      handleSlideActivation(this.activeIndex);
+    }
+  }
+});
+
+function goToSlide(index) {
+  swiper.slideTo(index);
+}
+
+function updateProgress(index) {
+  document.getElementById('progressIndicator').textContent = (index + 1) + ' / 6';
+}
+
+/* =====================================================
+   SLIDE 1 — ANIMATED INTRO
+===================================================== */
+(function initSlide1() {
+  // Floating particles
+  const container = document.getElementById('s1particles');
+  for (let i = 0; i < 20; i++) {
+    const p = document.createElement('div');
+    p.className = 's1-particle';
+    p.style.cssText = `
+      left:${Math.random()*100}%;
+      top:${Math.random()*100}%;
+      width:${Math.random()*3+1}px;
+      height:${Math.random()*3+1}px;
+      animation-duration:${Math.random()*8+6}s;
+      animation-delay:${Math.random()*4}s;
+      opacity:${Math.random()*0.7+0.2};
+      background:${Math.random()>.5?'#00d4ff':'#bf5af2'};
+    `;
+    container.appendChild(p);
+  }
+
+  // Staggered text reveal
+  const items = [
+    { id:'s1heading', delay:600 },
+    { id:'s1sub1',    delay:1400 },
+    { id:'s1sub2',    delay:2100 },
+    { id:'s1exe',     delay:2700 },
+    { id:'s1btn',     delay:3200 },
+  ];
+  items.forEach(({id, delay}) => {
+    setTimeout(() => {
+      const el = document.getElementById(id);
+      if (el) el.classList.add('s1-show');
+    }, delay);
+  });
+})();
+
+/* =====================================================
+   SLIDE 2 — SPRINKLES
+===================================================== */
+(function initCakeSprinkles() {
+  const colors = ['#e85d75','#c97abe','#f5a623','#c0392b','#8a4a9a','#c05820','#d4a96a','#f0b8a0'];
+  [1,2].forEach(n => {
+    const frosting = document.getElementById('cake'+n+'frosting');
+    if (!frosting) return;
+    for (let i = 0; i < 18; i++) {
+      const s = document.createElement('div');
+      s.className = 'sprinkle';
+      const color = colors[Math.floor(Math.random()*colors.length)];
+      const angle = Math.random()*360;
+      const isRound = Math.random() > 0.5;
+      s.style.cssText = `
+        left:${10+Math.random()*80}%;
+        top:${10+Math.random()*80}%;
+        width:${isRound ? Math.random()*4+2 : Math.random()*8+3}px;
+        height:${isRound ? Math.random()*4+2 : 2}px;
+        background:${color};
+        border-radius:${isRound?'50%':'2px'};
+        transform:rotate(${angle}deg);
+        animation-delay:${Math.random()*2}s;
+        animation-duration:${Math.random()*1+1.5}s;
+        z-index:2;
+        box-shadow:0 0 3px ${color};
+      `;
+      frosting.appendChild(s);
+    }
+  });
+})();
+
+/* =====================================================
+   SLIDE 3 — MILES DROP on active
+===================================================== */
+function triggerMilesDrop() {
+  const el = document.getElementById('milesWrap');
+  if (!el) return;
+  el.classList.remove('miles-drop');
+  void el.offsetWidth; // reflow
+  el.classList.add('miles-drop');
+}
+
+/* =====================================================
+   SLIDE 4 — STEAM BADGES animate on active
+===================================================== */
+function triggerSteamBadges() {
+  const badges = ['badge1','badge2','badge3','badge4','badge5'];
+  badges.forEach((id, i) => {
+    setTimeout(() => {
+      const el = document.getElementById(id);
+      if (el) {
+        el.classList.add('badge-show');
+        el.style.animation = `badgePop 0.5s cubic-bezier(0.34,1.56,0.64,1) forwards`;
+      }
+    }, i * 160);
+  });
+}
+
+/* =====================================================
+   SLIDE 6 — LEVEL UP ANIMATION
+===================================================== */
+function triggerLevelUp() {
+  // Confetti
+  const container = document.getElementById('confettiContainer');
+  container.innerHTML = '';
+  const confettiColors = ['#ffd60a','#ff2d55','#00d4ff','#bf5af2','#34c759','#ff9500'];
+  for (let i = 0; i < 30; i++) {
+    const c = document.createElement('div');
+    c.className = 'confetti-piece';
+    c.style.cssText = `
+      left:${Math.random()*100}%;
+      top:${-20+Math.random()*-50}px;
+      background:${confettiColors[Math.floor(Math.random()*confettiColors.length)]};
+      width:${Math.random()*10+4}px;
+      height:${Math.random()*10+4}px;
+      border-radius:${Math.random()>0.5?'50%':'2px'};
+      animation-duration:${Math.random()*3+2.5}s;
+      animation-delay:${Math.random()*2}s;
+    `;
+    container.appendChild(c);
+  }
+
+  // Staggered element reveals
+  const items = [
+    { id:'lvlTitle',     delay:200,  anim:'levelUp 0.8s cubic-bezier(0.34,1.56,0.64,1) forwards' },
+    { id:'lvlSubtitle',  delay:700,  anim:'fadeInUp 0.6s ease forwards' },
+    { id:'lvlUa',        delay:1100, anim:'fadeInUp 0.6s ease forwards' },
+    { id:'lvlCongrats',  delay:1400, anim:'fadeInUp 0.6s ease forwards' },
+    { id:'lvlBonuses',   delay:1800, anim:'fadeInUp 0.6s ease forwards' },
+    { id:'lvlFinal',     delay:2500, anim:'fadeInUp 0.6s ease forwards' },
+    { id:'lvlGreeting',  delay:3000, anim:'fadeInUp 0.8s ease forwards' },
+  ];
+  items.forEach(({id, delay, anim}) => {
+    setTimeout(() => {
+      const el = document.getElementById(id);
+      if (el) { el.style.animation = anim; el.style.opacity = '1'; }
+    }, delay);
+  });
+}
+
+/* =====================================================
+   SLIDE ACTIVATION HANDLER
+===================================================== */
+function handleSlideActivation(index) {
+  if (index === 2) triggerMilesDrop();
+  if (index === 3) triggerSteamBadges();
+  if (index === 5) triggerLevelUp();
+}
+
+/* =====================================================
+   VALORANT WISH GENERATOR
+===================================================== */
+const wishes = [
+  "Бажаю апнути найвищий ранг. Радіант чекає.",
+  "Бажаю тіммейтів, які не будуть раками і хоча б іноді дивляться на мапу.",
+  "Бажаю Black Market з суто золотими й фіолетовими скінами та найкращими знижками.",
+  "Бажаю, щоб твій аім був потужнічим за будь-який автоклікер.",
+  "Бажаю каток без тільту, афк і токсичних голосових чатів.",
+  "Бажаю, щоб кожен clutch закінчувався твоїм спокійним 'я ж казала'.",
+  "Бажаю тімейтів, які пушать разом, а не по одному як прідурки.",
+  "Бажаю перемог не тільки в Valorant, а й у всіх життєвих матчах.",
+  "Бажаю, щоб удача завжди була у твоїй команді.",
+  "Бажаю бути MVP матча не тільки в Valorant, а й у житті."
+];
+
+let wishQueue = [];
+let wishCount = 0;
+let fullRandomMode = false;
+
+function shuffleArray(arr) {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+// Init queue
+wishQueue = shuffleArray(wishes.map((_, i) => i));
+
+function generateWish() {
+  const textEl = document.getElementById('wishText');
+  const counterEl = document.getElementById('wishCounter');
+
+  let idx;
+  if (!fullRandomMode && wishQueue.length > 0) {
+    idx = wishQueue.shift();
+    wishCount++;
+    if (wishQueue.length === 0) {
+      fullRandomMode = true;
+    }
+  } else {
+    fullRandomMode = true;
+    idx = Math.floor(Math.random() * wishes.length);
+  }
+
+  // Glitch transition
+  textEl.classList.remove('show');
+  textEl.style.opacity = '0';
+
+  setTimeout(() => {
+    textEl.innerHTML = wishes[idx];
+    textEl.classList.add('show');
+    textEl.style.opacity = '1';
+  }, 150);
+
+  // Update counter
+  if (!fullRandomMode) {
+    counterEl.textContent = `Побажання ${wishCount} / 10`;
+  } else {
+    counterEl.textContent = wishCount < 10
+      ? `Побажання ${wishCount} / 10`
+      : '🎲 Повний рандом розблоковано.';
+  }
+}
+</script>
+
+</body>
+</html>
